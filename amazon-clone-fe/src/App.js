@@ -6,7 +6,7 @@ import ProductDetails from "./components/ProductDetails"
 function App() {
   return (
     <BrowserRouter>
-      <div className="App">
+      <div className="">
         <MyNavbar />
 
         <Routes>

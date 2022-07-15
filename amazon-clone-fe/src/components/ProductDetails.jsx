@@ -77,16 +77,20 @@ const ProductDetails = (props) => {
           <p className=" underline">
             <strong>Review(s):</strong>
           </p>
-          {reviews.map((review) => (
-            <div className="flex">
-              <p key={review._id}>{review.comment}</p>
-              <p className="flex">
-                {[...Array(review.rate)].map((star, i) => {
-                  return <RatingStar key={i} />
-                })}
-              </p>
-            </div>
-          ))}
+          <ul>
+            {reviews.map((review) => (
+              <li key={review._id}>
+                <div className="flex">
+                  <p>{review.comment}</p>
+                  <p className="flex">
+                    {[...Array(review.rate)].map((star, i) => {
+                      return <RatingStar key={i} />
+                    })}
+                  </p>
+                </div>
+              </li>
+            ))}
+          </ul>
           <ReviewsForm onSetNewReview={onSetNewReview} id={product._id} />
         </div>
       </div>
