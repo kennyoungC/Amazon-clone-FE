@@ -12,12 +12,12 @@ const MyNavbar = (props) => {
             {" "}
             <p>Add New Product</p>
           </Link>
-          <p>
+          {/* <p>
             Favouries{" "}
             <span className="inline-block py-1 px-2.5 leading-none text-center whitespace-nowrap align-baseline font-bold bg-blue-500 text-white rounded">
               2
             </span>
-          </p>
+          </p> */}
         </div>
       </nav>
     </header>

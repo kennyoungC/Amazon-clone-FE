@@ -42,7 +42,7 @@ const New = (props) => {
     }
   }
   return (
-    <div className="container mx-auto py-5">
+    <div className="container justify-center mx-auto py-5 w-5/6">
       <form onSubmit={submitHandler}>
         <Input
           onSetNewProduct={onSetNewProduct}

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import RatingStar from "./RatingStar"
-
+import { Link } from "react-router-dom"
 const ProductsCard = (props) => {
   const { name, brand, description, imageUrl, price, category, _id } = props
   const [avgRating, setAvgRating] = useState(0)
@@ -17,8 +17,10 @@ const ProductsCard = (props) => {
       // }
       const data = await response.json()
       if (data.length > 0) {
-        const avg = data.reduce((acc, curr) => acc + curr.rate, 0) / data.length
-        setAvgRating(avg.toFixed(0))
+        const rate = data.map((review) => review.rate)
+        setAvgRating(
+          parseInt(rate.reduce((acc, curr) => acc + curr, 0) / rate.length)
+        )
       } else {
         setAvgRating(0)
       }
@@ -27,6 +29,7 @@ const ProductsCard = (props) => {
     }
   }
 
+  console.log(avgRating)
   return (
     <div className="py-6">
       <div className="flex max-w-md bg-white shadow-lg rounded-lg overflow-hidden">
@@ -37,17 +40,21 @@ const ProductsCard = (props) => {
           }}
         ></div>
         <div className="w-2/3 p-4">
-          <h1 className="text-gray-900 font-bold text-2xl uppercase">{name}</h1>
-          <p className="mt-2 text-gray-600 text-sm">
-            Description: {description}
-          </p>
-          <p className="mt-2 text-gray-600 text-sm">Brand: {brand}</p>
+          <Link to={`/products/${_id}`}>
+            <h1 className="text-gray-900 font-bold text-2xl uppercase">
+              {name}
+            </h1>
+            <p className="mt-2 text-gray-600 text-sm">
+              Description: {description}
+            </p>
+            <p className="mt-2 text-gray-600 text-sm">Brand: {brand}</p>
+          </Link>
           <div className="flex item-center mt-2">
             <p className="flex items-center justify-center pr-2">
               Average Rating:
             </p>{" "}
             {avgRating !== 0 ? (
-              <span className="pt-1">
+              <span className="pt-1 flex">
                 {[...Array(avgRating)].map((star, i) => {
                   return <RatingStar key={i} />
                 })}
