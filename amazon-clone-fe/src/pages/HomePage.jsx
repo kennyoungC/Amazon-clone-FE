@@ -10,7 +10,8 @@ const HomePage = () => {
 
   const getProducts = async () => {
     try {
-      const response = await fetch("http://localhost:3003/products")
+      const apiUrl = `${process.env.REACT_APP_BE_URL}/products`
+      const response = await fetch(apiUrl)
       if (response.ok) {
         const data = await response.json()
         setProducts(data)

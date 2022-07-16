@@ -23,8 +23,9 @@ const New = (props) => {
   }
   const submitHandler = async (e) => {
     e.preventDefault()
+    const apiUrl = `${process.env.REACT_APP_BE_URL}/products`
     try {
-      const response = await fetch("http://localhost:3003/products", {
+      const response = await fetch(apiUrl, {
         method: "POST",
         body: JSON.stringify(newProduct),
         headers: {
