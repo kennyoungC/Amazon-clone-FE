@@ -9,9 +9,9 @@ const ReviewsForm = (props) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-
+    const apiUrl = `${process.env.REACT_APP_BE_URL}/reviews/${id}`
     try {
-      const response = await fetch(`http://localhost:3003/reviews/${id}`, {
+      const response = await fetch(apiUrl, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
