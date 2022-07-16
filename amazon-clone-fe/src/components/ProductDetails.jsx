@@ -48,8 +48,7 @@ const ProductDetails = (props) => {
       console.log(error)
     }
   }
-  console.log(params.productId)
-  console.log(reviews)
+
   return (
     <div className="container mx-auto p-8 flex flex-wrap gap-5">
       <img

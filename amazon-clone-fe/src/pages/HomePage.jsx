@@ -14,7 +14,6 @@ const HomePage = () => {
       const response = await fetch(apiUrl)
       if (response.ok) {
         const data = await response.json()
-        console.log(data)
         setProducts(data)
       } else {
         throw new Error("Something went wrong")

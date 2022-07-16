@@ -29,7 +29,6 @@ const ProductsCard = (props) => {
     }
   }
 
-  console.log(avgRating)
   return (
     <div className="py-6">
       <div className="flex max-w-md bg-white shadow-lg rounded-lg overflow-hidden">
