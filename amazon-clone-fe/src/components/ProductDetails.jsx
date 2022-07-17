@@ -74,16 +74,18 @@ const ProductDetails = (props) => {
           <p className=" underline">
             <strong>Review(s):</strong>
           </p>
-          <ul>
+          <ul className="list-disc pl-6">
             {reviews.map((review) => (
               <li key={review._id}>
-                <div className="flex">
+                <div className="flex justify-between justify-start">
                   <p>{review.comment}</p>
-                  <p className="flex">
-                    {[...Array(review.rate)].map((star, i) => {
-                      return <RatingStar key={i} />
-                    })}
-                  </p>
+                  <div className="flex justify-start">
+                    <p className="flex w-[95px]">
+                      {[...Array(review.rate)].map((star, i) => {
+                        return <RatingStar key={i} />
+                      })}
+                    </p>
+                  </div>
                 </div>
               </li>
             ))}
