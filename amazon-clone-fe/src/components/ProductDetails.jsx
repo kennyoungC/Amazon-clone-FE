@@ -48,7 +48,7 @@ const ProductDetails = (props) => {
   }
 
   return (
-    <div className="container mx-auto p-8 flex flex-wrap gap-5">
+    <div className="container mx-auto p-8 flex flex-wrap gap-5 justify-center">
       <img
         className="max-w-md shadow-lg object-cover h-full"
         src={product.imageUrl}
