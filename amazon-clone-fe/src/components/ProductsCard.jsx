@@ -1,17 +1,19 @@
 import { useEffect, useState } from "react"
 import RatingStar from "./RatingStar"
 import { Link } from "react-router-dom"
+import Modal from "./Modal"
 const ProductsCard = (props) => {
   const { name, brand, description, imageUrl, price, category, _id } = props
   const [avgRating, setAvgRating] = useState(0)
-
+  const [showModal, setShowModal] = useState(false)
   useEffect(() => {
     getAvgRating()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
   const getAvgRating = async () => {
     try {
-      const response = await fetch(`http://localhost:3003/reviews/${_id}`)
+      const apiUrl = `${process.env.REACT_APP_BE_URL}/reviews/${_id}`
+      const response = await fetch(apiUrl)
       // if (!response.ok) {
       //   throw new Error("Something went wrong")
       // }
@@ -28,16 +30,20 @@ const ProductsCard = (props) => {
       console.log(error)
     }
   }
-
+  const closeModalHandler = () => {
+    setShowModal(false)
+  }
   return (
     <div className="py-6">
       <div className="flex max-w-md bg-white shadow-lg rounded-lg overflow-hidden">
         <div
+          onClick={() => setShowModal(true)}
           className="w-1/3 bg-cover bg-center bg-no-repeat"
           style={{
             backgroundImage: `url(${imageUrl})`,
           }}
         ></div>
+        {showModal && <Modal image={imageUrl} onClose={closeModalHandler} />}
         <div className="w-2/3 p-4">
           <Link to={`/products/${_id}`}>
             <h1 className="text-gray-900 font-bold text-2xl uppercase">

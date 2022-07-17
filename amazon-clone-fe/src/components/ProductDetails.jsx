@@ -20,9 +20,8 @@ const ProductDetails = (props) => {
 
   const getSingleProduct = async () => {
     try {
-      const response = await fetch(
-        `http://localhost:3003/products/${params.productId}`
-      )
+      const apiUrl = `${process.env.REACT_APP_BE_URL}/products/${params.productId}`
+      const response = await fetch(apiUrl)
       if (response.ok) {
         const data = await response.json()
         setProduct(data)
@@ -35,9 +34,8 @@ const ProductDetails = (props) => {
   }
   const fetchReviews = async () => {
     try {
-      const response = await fetch(
-        `http://localhost:3003/reviews/${params.productId}`
-      )
+      const apiUrl = `${process.env.REACT_APP_BE_URL}/reviews/${params.productId}`
+      const response = await fetch(apiUrl)
       if (response.ok) {
         const data = await response.json()
         setReviews(data)
