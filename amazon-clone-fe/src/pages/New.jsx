@@ -49,7 +49,7 @@ const New = (props) => {
   const onSetNewProduct = (e) => {
     setNewProduct({
       ...newProduct,
-      [e.target.name]: e.target.value.trim(),
+      [e.target.name]: e.target.value,
     })
   }
   const submitHandler = async (e) => {
