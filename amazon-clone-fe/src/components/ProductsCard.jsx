@@ -3,7 +3,8 @@ import RatingStar from "./RatingStar"
 import { Link } from "react-router-dom"
 import Modal from "./Modal"
 const ProductsCard = (props) => {
-  const { name, brand, description, imageUrl, price, category, _id } = props
+  const { name, brand, description, imageUrl, price, category, _id, reviews } =
+    props
   const [avgRating, setAvgRating] = useState(0)
   const [showModal, setShowModal] = useState(false)
   useEffect(() => {
@@ -12,12 +13,7 @@ const ProductsCard = (props) => {
   }, [])
   const getAvgRating = async () => {
     try {
-      const apiUrl = `${process.env.REACT_APP_BE_URL}/reviews/${_id}`
-      const response = await fetch(apiUrl)
-      // if (!response.ok) {
-      //   throw new Error("Something went wrong")
-      // }
-      const data = await response.json()
+      const data = reviews
       if (data.length > 0) {
         const rate = data.map((review) => review.rate)
         setAvgRating(
@@ -35,12 +31,13 @@ const ProductsCard = (props) => {
   }
   return (
     <div className="py-6">
-      <div className="flex max-w-md bg-white shadow-lg rounded-lg overflow-hidden">
+      <div className="flex bg-white shadow-lg rounded-lg overflow-hidden">
         <div
           onClick={() => setShowModal(true)}
           className="w-1/3 bg-cover bg-center bg-no-repeat"
           style={{
             backgroundImage: `url(${imageUrl})`,
+            width: "220px",
           }}
         ></div>
         {showModal && <Modal image={imageUrl} onClose={closeModalHandler} />}

@@ -34,7 +34,7 @@ const ProductDetails = (props) => {
   }
   const fetchReviews = async () => {
     try {
-      const apiUrl = `${process.env.REACT_APP_BE_URL}/reviews/${params.productId}`
+      const apiUrl = `${process.env.REACT_APP_BE_URL}/products/${params.productId}/reviews`
       const response = await fetch(apiUrl)
       if (response.ok) {
         const data = await response.json()
